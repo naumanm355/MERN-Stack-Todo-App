@@ -28,6 +28,10 @@ app
     .route("/api/editlist")
     .get(ListController.editListData)
 
+app
+    .route("/api/deletetodofromlist")
+    .get(ListController.deleteTodoFromList)
+
     // Todo
 app
     .route("/api/createtodo")

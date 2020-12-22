@@ -46,3 +46,20 @@ exports.editListData = (req, res) => {
         res.status(200).send({ 'success': 'true', 'message': "List edit successfully." });
     });
 }
+
+exports.deleteTodoFromList = (req, res) => {
+    ListData.findById({ _id: req.body.listId }, (err, data) => {
+        if (err) {
+            res.send(err)
+        } else {
+            const dd = data.todo.filter(tod => tod._id != req.body.todoId);
+            ListData.findByIdAndUpdate({ _id: req.body.listId }, { $set: { todo: dd } }, (err, succ) => {
+                if (err) {
+                    res.status(500).send({ "success": 'false', "message": "Error in updating list" });
+                } else {
+                    res.status(200).send({ "success": 'true', "message": "Todo deleted successfully" });
+                }
+            })
+        }
+    })
+}
