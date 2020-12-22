@@ -40,7 +40,7 @@ export default function ShowTodo(props) {
                     <TableBody>
                         {data.map((row) => (
                             <TableRow key={row.title} style={{ cursor: 'pointer' }}>
-                                <TableCell align="left">{row.mark == "comp" ? <DoneIcon style={{color:'blue'}}/> : <ClearIcon style={{color:'red'}}/>}</TableCell>
+                                <TableCell align="left">{row.mark === "comp" ? <DoneIcon style={{color:'blue'}}/> : <ClearIcon style={{color:'red'}}/>}</TableCell>
                                 <TableCell align="left">{row.title}</TableCell>
                                 <TableCell align="left">{row.date}</TableCell>
                                 <TableCell align="right">

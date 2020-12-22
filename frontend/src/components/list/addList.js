@@ -19,7 +19,7 @@ export default function AddList(props) {
     const classes = useStyles();
     const [value, setValue] = useState('');
     const getValue = (value) => {
-        if(value.trim() != "") {
+        if(value.trim() !== "") {
             props.saveList(value);
             setValue('');
         }
