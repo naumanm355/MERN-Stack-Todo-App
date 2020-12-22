@@ -42,12 +42,7 @@ exports.deleteOneList = (req, res) => {
 }
 
 exports.editListData = (req, res) => {
-    // Update list pending
-    ListData.findOne({ _id: req.params.listId }, (err, data) => {
-        if (err) {
-            res.status(500).send({ 'success': 'false', 'message': "Error in getting list." });
-        } else {
-            res.status(200).send({ 'success': 'true', 'message': data });
-        }
-    })
+    ListData.findByIdAndUpdate({ _id: req.body.id }, { $set: { name: req.body.name } }, (err, data)=>{
+        res.status(200).send(data);
+    });
 }

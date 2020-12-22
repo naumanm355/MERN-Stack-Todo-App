@@ -22,7 +22,7 @@ app
     .get(ListController.deleteOneList)
 
 app
-    .route("/api/editlist/:listId")
+    .route("/api/editlist")
     .get(ListController.editListData)
 
 app.listen(port, ()=> {
