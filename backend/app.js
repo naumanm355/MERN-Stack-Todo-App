@@ -5,10 +5,13 @@ const port = process.env.PORT || 3301;
 const bodyParser = require("body-parser");
 
 const ListController = require('./controllers/ListController')
+const TodoController = require('./controllers/TodoController')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+
+    // List
 app
     .route("/api/createlist")
     .post(ListController.createList)
@@ -24,6 +27,12 @@ app
 app
     .route("/api/editlist")
     .get(ListController.editListData)
+
+    // Todo
+app
+    .route("/api/createtodo")
+    .post(TodoController.createTodo)
+
 
 app.listen(port, ()=> {
     console.log(`Server running at http://localhost:${port}`);

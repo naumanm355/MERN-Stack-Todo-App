@@ -1,5 +1,5 @@
-const List = require('../models/List');
 const ListData = require('../models/List')
+
 exports.createList = (req, res) => {
     ListData.findOne({ name: req.body.name }, (err, data) => {
         if (err) {
@@ -43,6 +43,6 @@ exports.deleteOneList = (req, res) => {
 
 exports.editListData = (req, res) => {
     ListData.findByIdAndUpdate({ _id: req.body.id }, { $set: { name: req.body.name } }, (err, data)=>{
-        res.status(200).send(data);
+        res.status(200).send({ 'success': 'true', 'message': "List edit successfully." });
     });
 }
