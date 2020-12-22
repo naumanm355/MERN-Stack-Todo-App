@@ -42,6 +42,7 @@ exports.deleteOneList = (req, res) => {
 }
 
 exports.editListData = (req, res) => {
+    // Update list pending
     ListData.findOne({ _id: req.params.listId }, (err, data) => {
         if (err) {
             res.status(500).send({ 'success': 'false', 'message': "Error in getting list." });
