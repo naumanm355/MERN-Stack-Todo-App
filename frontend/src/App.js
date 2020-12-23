@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import AddList from './components/list/addList'
 import Grid from '@material-ui/core/Grid';
-import { makeStyles, Paper } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import ShowList from './components/list/showList';
 import AddTodo from './components/todo/addTodo';
 import ShowTodo from './components/todo/showTodo';

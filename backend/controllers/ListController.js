@@ -1,4 +1,5 @@
 const ListData = require('../models/List')
+const TodoData = require('../models/Todo');
 
 exports.createList = (req, res) => {
     ListData.findOne({ name: req.body.name }, (err, data) => {
@@ -57,6 +58,7 @@ exports.deleteTodoFromList = (req, res) => {
                 if (err) {
                     res.status(500).send({ "success": 'false', "message": "Error in updating list" });
                 } else {
+                    TodoData.deleteOne({_id: req.body.todoId}).then(()=>console.log("Deleted from todo also"))
                     res.status(200).send({ "success": 'true', "message": "Todo deleted successfully" });
                 }
             })
