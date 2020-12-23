@@ -10,9 +10,9 @@ import ROOT_URL from '../constants/config';
         mode: 'cors',
         body: JSON.stringify(listData)
     }).then((response) => {
-        console.log("response",response);
         response.json().then(data => {
             if(data.success) {
+                console.log("response",data);
                 return dispatch({type: List_Action.NEW, payload: data})
             }
         })
