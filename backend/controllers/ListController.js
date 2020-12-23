@@ -4,6 +4,7 @@ const TodoData = require('../models/Todo');
 exports.createList = (req, res) => {
     ListData.findOne({ name: req.body.name }, (err, data) => {
         if (err) {
+            console.log(err)
             res.status(500).send({ 'success': 'false', 'message': "Error in Database." });
         }
         if (data != null || data != undefined) {

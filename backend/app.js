@@ -1,12 +1,15 @@
+const cors = require('cors')
 const express = require('express');
-const app = express();
 var config=require("./config/db");
+const app = express();
 const port = process.env.PORT || 3301;
 const bodyParser = require("body-parser");
 
 const ListController = require('./controllers/ListController')
 const TodoController = require('./controllers/TodoController')
 
+app.use(cors());
+app.options('*',cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

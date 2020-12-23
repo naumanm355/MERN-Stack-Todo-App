@@ -20,7 +20,8 @@ export default function AddList(props) {
     const [value, setValue] = useState('');
     const getValue = (value) => {
         if(value.trim() !== "") {
-            props.saveList(value);
+            props.handleCreateList(value)
+            // props.saveList(value);
             setValue('');
         }
     }
