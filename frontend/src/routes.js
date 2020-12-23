@@ -1,11 +1,11 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import listcom from './components/list/addList'
+import ListView from './components/list/listView'
 
 const Root = () => (
     <BrowserRouter>
         <Switch>
-            <Route exact path="/" component={listcom} />
+            <Route exact path="/" component={ListView} />
         </Switch>
     </BrowserRouter>
 )
