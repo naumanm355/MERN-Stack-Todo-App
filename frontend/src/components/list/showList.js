@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import EditIcon from '@material-ui/icons/Edit';
 import ClearIcon from '@material-ui/icons/Clear';
+import AddList from './addList';
 
 const useStyles = makeStyles({
     boldText: {
@@ -18,12 +19,18 @@ const useStyles = makeStyles({
 
 export default function ShowList(props) {
     const classes = useStyles();
-
+    useEffect(()=>{
+        console.log("mine",props.list)
+    })
     const editList = (data) => {
         console.log(data)
     }
     return (
         <div>
+            <div>
+                <AddList handleCreateList = {props.handleCreateList}/>
+            </div>
+            <div>
             <TableContainer component={Paper}>
                 <Table className={classes.table}>
                     <TableHead>
@@ -34,9 +41,9 @@ export default function ShowList(props) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {props.todoList.map((row) => (
-                            <TableRow key={row} style={{ cursor: 'pointer' }}>
-                                <TableCell align="left">{row}</TableCell>
+                        {props.list.map((row) => (
+                            <TableRow key={row._id} style={{ cursor: 'pointer' }}>
+                                <TableCell align="left">{row.name}</TableCell>
                                 <TableCell align="right">
                                     <EditIcon onClick={()=>editList(row)} style={{color:'blue'}} />
                                 </TableCell>
@@ -48,6 +55,7 @@ export default function ShowList(props) {
                     </TableBody>
                 </Table>
             </TableContainer>
+            </div>
         </div>
     );
 }

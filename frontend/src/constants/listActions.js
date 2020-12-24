@@ -1,7 +1,9 @@
 export const List_Action = {
-    NEW: "NEW"
+    NEW: "NEW",
+    SHOW: "SHOW"
 }
 
 export const List_Status = {
-    NEW: "NEW"
+    NEW: "NEW",
+    SHOW: "SHOW"
 }
