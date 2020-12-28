@@ -29,7 +29,7 @@ app
 
 app
     .route("/api/editlist")
-    .get(ListController.editListData)
+    .post(ListController.editListData)
 
 app
     .route("/api/deletetodofromlist")

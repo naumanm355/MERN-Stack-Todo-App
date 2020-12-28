@@ -24,18 +24,38 @@ import store from '../store/index'
  }
 
  export const handleShowList = () => dispatch => {
-     console.log("I am called")
     fetch(ROOT_URL+'/api/getlistdata', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json;charset=UTF-8' },
         mode: 'cors',
     }).then(response => {
             response.json().then(data => {
-                console.log("res of list",data.data)
                 if(data.success) {
                     store.dispatch({ type: List_Action.SHOW, payload: data.data })
                 }
             })
     }).catch(err=>console.log(err))
     return { type: List_Action.SHOW, payload: [] }
+ }
+
+ export const handleUpdateList = (id, name) => dispatch => {
+    var obj = {
+         'id': id,
+         'name': name
+    }
+    fetch(ROOT_URL + '/api/editlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        mode: 'cors',
+        body: JSON.stringify(obj)
+    }).then((res)=>{
+        res.json().then(data=>{
+            if(data.success) {
+                console.log("updated successfully")
+                // store.dispatch({ type: List_Action.SHOW })
+            } else {
+                console.log("Error in updating action")
+            }
+        })
+    })
  }

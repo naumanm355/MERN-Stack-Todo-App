@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -19,16 +19,25 @@ const useStyles = makeStyles({
 
 export default function ShowList(props) {
     const classes = useStyles();
+    const [isUpdate, setIsUpdate]=useState(false)
+    const [updateList, setUpdateList] = useState({ id: '', name: ''})
+
     useEffect(()=>{
-        console.log("mine",props.list)
+        
     })
     const editList = (data) => {
-        console.log(data)
+        setIsUpdate(true);
+        setUpdateList({name: data.name, id: data._id})
     }
+    const deleteList = (id) => {
+        console.log(id)
+    }
+
     return (
         <div>
             <div>
-                <AddList handleCreateList = {props.handleCreateList}/>
+                <AddList handleCreateList = {props.handleCreateList} isUpdate={isUpdate} updatlist={updateList}
+                handleUpdateList={props.handleUpdateList}/>
             </div>
             <div>
             <TableContainer component={Paper}>
@@ -42,13 +51,13 @@ export default function ShowList(props) {
                     </TableHead>
                     <TableBody>
                         {props.list.map((row) => (
-                            <TableRow key={row._id} style={{ cursor: 'pointer' }}>
+                            <TableRow key={row._id}>
                                 <TableCell align="left">{row.name}</TableCell>
                                 <TableCell align="right">
-                                    <EditIcon onClick={()=>editList(row)} style={{color:'blue'}} />
+                                    <EditIcon onClick={()=>editList(row)} style={{color:'blue', cursor: 'pointer'}} />
                                 </TableCell>
                                 <TableCell align="right">
-                                    <ClearIcon style={{color:'red'}}/>
+                                    <ClearIcon onClick={()=>deleteList(row._id)} style={{color:'red', cursor: 'pointer'}}/>
                                 </TableCell>
                             </TableRow>
                         ))}
