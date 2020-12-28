@@ -24,8 +24,8 @@ app
     .get(ListController.getListData)
 
 app
-    .route("/api/deletelist/:listId")
-    .get(ListController.deleteOneList)
+    .route("/api/deletelist")
+    .delete(ListController.deleteOneList)
 
 app
     .route("/api/editlist")

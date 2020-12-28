@@ -3,7 +3,7 @@ import { List_Action, List_Status } from '../../constants/listActions';
 import AddList from './addList';
 import ShowList from './showList';
 import { connect } from 'react-redux';
-import { handleCreateList, handleShowList, handleUpdateList } from '../../actions/listActions'
+import { handleCreateList, handleShowList, handleUpdateList, handleDeleteList } from '../../actions/listActions'
 
 const mapStateToProps = (state) => {
     return {
@@ -16,7 +16,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         handleCreateList: (name) => {dispatch(handleCreateList(name))},
         handleShowList: ()=> { dispatch(handleShowList()) },
-        handleUpdateList: (id,name) => {dispatch(handleUpdateList(id,name))}
+        handleUpdateList: (id,name) => {dispatch(handleUpdateList(id,name))},
+        handleDeleteList: (id) => { dispatch(handleDeleteList(id)) }
     }
 }
 
@@ -31,7 +32,8 @@ class ListView extends Component {
         switch (status) {
             case List_Status.SHOW:
                 return <ShowList handleCreateList={this.props.handleCreateList} list = {this.props.lists}
-                handleUpdateList={this.props.handleUpdateList} handleShowList={this.props.handleShowList}/>
+                handleUpdateList={this.props.handleUpdateList} handleShowList={this.props.handleShowList} 
+                handleDeleteList={this.props.handleDeleteList} />
             default:
                 
         }

@@ -59,3 +59,23 @@ import store from '../store/index'
         })
     })
  }
+
+ export const handleDeleteList = (id) => dispatch => {
+     var obj = {
+         "listId": id
+     }
+     fetch(ROOT_URL + '/api/deletelist', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        mode: 'cors',
+        body: JSON.stringify(obj)
+     }).then((res)=> {
+         res.json().then(data => {
+             if(data.success) {
+                 console.log(data);
+             } else {
+                console.log(data);
+             }
+         })
+     })
+ }

@@ -34,7 +34,7 @@ exports.getListData = (req, res) => {
 }
 
 exports.deleteOneList = (req, res) => {
-    ListData.deleteOne({ _id: req.params.listId }, (err, data) => {
+    ListData.deleteOne({ _id: req.body.listId }, (err, data) => {
         if (err) {
             res.status(500).json({ 'success': 'false', 'message': "Error in deleting list." });
         } else {
