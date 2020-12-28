@@ -31,7 +31,7 @@ class ListView extends Component {
         switch (status) {
             case List_Status.SHOW:
                 return <ShowList handleCreateList={this.props.handleCreateList} list = {this.props.lists}
-                handleUpdateList={this.props.handleUpdateList} />
+                handleUpdateList={this.props.handleUpdateList} handleShowList={this.props.handleShowList}/>
             default:
                 
         }

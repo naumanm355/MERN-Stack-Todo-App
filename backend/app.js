@@ -35,6 +35,8 @@ app
     .route("/api/deletetodofromlist")
     .get(ListController.deleteTodoFromList)
 
+app.route("/deletealllist").get(ListController.deleteAllList)
+
     // Todo
 app
     .route("/api/createtodo")

@@ -21,6 +21,9 @@ export default function AddList(props) {
     const getValue = (value) => {
         if(value.trim() !== "") {
             props.handleCreateList(value)
+            setTimeout(() => {
+                props.handleShowList()
+            }, 300);
             // props.saveList(value);
             setValue('');
         }
@@ -28,6 +31,9 @@ export default function AddList(props) {
     const updateValue = () => {
         if(value.trim() !== "") {
             props.handleUpdateList(props.updatlist.id,value)
+            setTimeout(() => {
+                props.handleShowList()
+            }, 300);
             setValue('')
         }
     }

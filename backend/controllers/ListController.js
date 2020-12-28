@@ -66,3 +66,7 @@ exports.deleteTodoFromList = (req, res) => {
         }
     })
 }
+
+exports.deleteAllList = (req, res) => {
+    ListData.deleteMany({}).then(data=>console.log("delete successfull"))
+}

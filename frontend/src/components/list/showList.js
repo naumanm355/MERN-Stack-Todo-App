@@ -37,7 +37,7 @@ export default function ShowList(props) {
         <div>
             <div>
                 <AddList handleCreateList = {props.handleCreateList} isUpdate={isUpdate} updatlist={updateList}
-                handleUpdateList={props.handleUpdateList}/>
+                handleUpdateList={props.handleUpdateList} handleShowList={props.handleShowList}/>
             </div>
             <div>
             <TableContainer component={Paper}>
