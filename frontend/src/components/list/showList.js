@@ -65,7 +65,10 @@ export default function ShowList(props) {
     const addTodo = () => {
         if(title.trim() !== "") {
             props.handleCreateTodo(listId, title, selectedDate);
-        setTitle('');
+            setTitle('');
+            setTimeout(() => {
+                props.handleShowList()
+            }, 300);
         } else {
             console.log("title is empty")
         }

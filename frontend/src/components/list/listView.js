@@ -44,7 +44,7 @@ class ListView extends Component {
     }
     render(){
         return (
-            <div>
+            <div style={{overflow: 'hidden'}}>
                 {this.getScreen(this.props.list_status)}
             </div>
         )
