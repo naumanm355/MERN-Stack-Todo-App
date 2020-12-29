@@ -96,12 +96,20 @@ export default function ShowList(props) {
         setTitle('')
         setHideDateField(false)
         props.handleEditTodo(listId, editedTodo, title)
-        setTimeout(() => {
-            props.handleShowList()
-        }, 300);
     } else {
         console.log("Titile is empty")
     }
+    }
+
+    const changeStatus = (data) => {
+        let status;
+        if(data.status == "uncomplete") {
+            status = "complete"
+        } else {
+            status = "uncomplete"
+        }
+        props.handleUpdateStatus(listId, data._id, status)
+        setTodoList(todoList.map(item => item._id == data._id ? {...item, status: status} : item))
     }
 
     return (
@@ -179,7 +187,7 @@ export default function ShowList(props) {
                         <TableBody>
                             {todoList.map((row) => (
                                 <TableRow key={row._id} className={classes.changePointer}>
-                                    <TableCell align="left" >{row.status == "uncomplete" ? <ClearIcon style={{color:'red'}}/> : <CheckIcon style={{color:'blue'}}/>}</TableCell>
+                                    <TableCell align="left" onClick={()=>changeStatus(row)}>{row.status == "uncomplete" ? <ClearIcon style={{color:'red'}}/> : <CheckIcon style={{color:'blue'}}/>}</TableCell>
                                     <TableCell align="left" >{row.title}</TableCell>
                                     <TableCell align="left" >{row.date}</TableCell>
                                     <TableCell align="right">

@@ -46,6 +46,10 @@ app
     .route("/api/edittodo")
     .post(TodoController.handleEditTodo)
 
+app
+    .route("/api/updatestatus")
+    .post(TodoController.handleUpdateStatus)
+
 
 app.listen(port, ()=> {
     console.log(`Server running at http://localhost:${port}`);

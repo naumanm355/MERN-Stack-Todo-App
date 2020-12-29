@@ -3,7 +3,7 @@ import { List_Action, List_Status } from '../../constants/listActions';
 import AddList from './addList';
 import ShowList from './showList';
 import { connect } from 'react-redux';
-import { handleCreateList, handleShowList, handleUpdateList, handleDeleteList, handleCreateTodo, handleDeleteTodoFromList, handleEditTodo } from '../../actions/listActions'
+import { handleCreateList, handleShowList, handleUpdateList, handleDeleteList, handleCreateTodo, handleDeleteTodoFromList, handleEditTodo, handleUpdateStatus } from '../../actions/listActions'
 
 const mapStateToProps = (state) => {
     return {
@@ -20,7 +20,8 @@ const mapDispatchToProps = (dispatch) => {
         handleDeleteList: (id) => { dispatch(handleDeleteList(id)) },
         handleCreateTodo: (listId, title, date) => { dispatch(handleCreateTodo(listId, title, date)) },
         handleDeleteTodoFromList: (listId, todoId) => { dispatch(handleDeleteTodoFromList(listId, todoId)) },
-        handleEditTodo: (listId, todoId, title) => { dispatch(handleEditTodo(listId, todoId, title)) }
+        handleEditTodo: (listId, todoId, title) => { dispatch(handleEditTodo(listId, todoId, title)) },
+        handleUpdateStatus: (listId, todoId, status) => { dispatch(handleUpdateStatus(listId, todoId, status)) }
     }
 }
 
@@ -37,7 +38,8 @@ class ListView extends Component {
                 return <ShowList handleCreateList={this.props.handleCreateList} list = {this.props.lists}
                 handleUpdateList={this.props.handleUpdateList} handleShowList={this.props.handleShowList} 
                 handleDeleteList={this.props.handleDeleteList} handleCreateTodo={this.props.handleCreateTodo}
-                handleDeleteTodoFromList={this.props.handleDeleteTodoFromList} handleEditTodo={this.props.handleEditTodo}/>
+                handleDeleteTodoFromList={this.props.handleDeleteTodoFromList} handleEditTodo={this.props.handleEditTodo}
+                handleUpdateStatus={this.props.handleUpdateStatus} />
             default:
                 
         }

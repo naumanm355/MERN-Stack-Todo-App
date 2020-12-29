@@ -144,3 +144,26 @@ import store from '../store/index'
          })
     })
  }
+ 
+ export const handleUpdateStatus = (listId, todoId, status) => dispatch => {
+    var obj = {
+        "listId": listId,
+        "todoId": todoId,
+        "status": status
+    }
+    fetch(ROOT_URL + '/api/updatestatus', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        mode: 'cors',
+        body: JSON.stringify(obj)
+    }).then(res=> {
+        res.json().then(data => {
+            if(data.success) {
+                console.log(data)
+                store.dispatch({ type: List_Action.SHOW, payload: data.data })
+            } else {
+                console.log(data)
+            }
+         })
+    })
+ }

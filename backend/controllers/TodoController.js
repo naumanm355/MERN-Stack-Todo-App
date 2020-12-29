@@ -43,3 +43,19 @@ exports.handleEditTodo = (req, res) => {
         })
     })
 }
+
+exports.handleUpdateStatus = (req, res) => {
+    ListData.findById({ _id:  req.body.listId }, (err, data) => {
+        const update = data.todo.map(ss => ss._id == req.body.todoId ? { ...ss, status: req.body.status } : ss )
+        ListData.findByIdAndUpdate({ _id: req.body.listId }, { todo: update }, (err1, data1) => {
+            if(err1) {
+                res.status(500).json({ 'success': 'false', 'message': "Failure in updating status." });
+            } else {
+                ListData.find({}, (er, dat)=>{
+                    res.status(200).json({ 'success': 'true', 'data': dat });
+                })
+            }
+        })
+    })
+
+}
