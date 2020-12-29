@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 export default function AddList(props) {
     const classes = useStyles();
     const [value, setValue] = useState('');
+    const [show, setShow] = useState(false);
     const getValue = (value) => {
         if(value.trim() !== "") {
             props.handleCreateList(value)
@@ -33,16 +34,18 @@ export default function AddList(props) {
             props.handleUpdateList(props.updatlist.id,value)
             setTimeout(() => {
                 props.handleShowList()
+                setShow(false)
             }, 300);
             setValue('')
         }
     }
     useEffect(()=>{
         setValue(props.updatlist.name)
+        setShow(props.isUpdate)
     },[props.updatlist.name])
     return (
         <div>
-            {props.isUpdate ?
+            {show ?
             <form>
                 <TextField
                     id="outlined-size-small"

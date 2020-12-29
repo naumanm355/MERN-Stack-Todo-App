@@ -33,7 +33,7 @@ app
 
 app
     .route("/api/deletetodofromlist")
-    .get(ListController.deleteTodoFromList)
+    .post(ListController.deleteTodoFromList)
 
 app.route("/deletealllist").get(ListController.deleteAllList)
 

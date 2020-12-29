@@ -6,9 +6,9 @@ exports.createTodo = (req, res) => {
         if (err) {
             res.status(500).json({ 'success': 'false', 'message': "Error in Database." });
         }
-        if (data != null || data != undefined) {
-            res.status(200).json({ 'success': 'false', 'message': 'List data already exist.' });
-        }
+        // if (data != null || data != undefined) {
+        //     res.status(200).json({ 'success': 'false', 'message': 'List data already exist.' });
+        // }
         else {
             let newTodoData = new TodoData(req.body);
             newTodoData.save((err, data1) => {
@@ -19,7 +19,9 @@ exports.createTodo = (req, res) => {
                         if (err1) {
                             res.status(500).json({ 'success': 'false', 'message': "Failure in merging todo." });
                         } else {
-                            res.status(500).json({ 'success': 'true', 'message': "List created successfully.", 'data': data1 });
+                            ListData.findById({_id: req.body.listId}, (err, data2)=> {
+                                res.status(200).json({ 'success': 'true', 'message': "List created successfully.", 'data': data2 });
+                            })
                         }
                     })
                 }

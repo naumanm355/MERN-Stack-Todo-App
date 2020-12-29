@@ -79,3 +79,46 @@ import store from '../store/index'
          })
      })
  }
+
+ export const handleCreateTodo = (listId, title, date) => dispatch => {
+     var obj = {
+        "title": title,
+        "date": date,
+        "listId": listId
+     }
+     fetch(ROOT_URL + '/api/createtodo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        mode: 'cors',
+        body: JSON.stringify(obj)
+     }).then(res => {
+         res.json().then(data => {
+            if(data.success) {
+                console.log(data)
+            } else {
+                console.log(data)
+            }
+         })
+     })
+ }
+
+ export const handleDeleteTodoFromList = (listId, todoId) => dispatch => {
+     var obj = {
+        "listId": listId,
+        "todoId": todoId
+     }
+     fetch(ROOT_URL + '/api/deletetodofromlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        mode: 'cors',
+        body: JSON.stringify(obj)
+     }).then(res => {
+         res.json().then(data => {
+            if(data.success) {
+                console.log(data)
+            } else {
+                console.log(data)
+            }
+         })
+     })
+ }
