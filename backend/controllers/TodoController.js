@@ -29,3 +29,17 @@ exports.createTodo = (req, res) => {
         }
     })
 }
+
+exports.handleEditTodo = (req, res) => {
+    ListData.findById({ _id: req.body.listId }, (err, data)=>{
+        const uupdate = data.todo.map(ss => ss._id == req.body.todoId ? { ...ss, title: req.body.title} : ss)
+        // res.send(uupdate)
+        ListData.findByIdAndUpdate({ _id: req.body.listId }, { todo: uupdate }, (err1,data1)=>{
+            if(err1) {
+                res.status(500).json({ 'success': 'false', 'message': "Failure in updating todo." });
+            } else {
+                res.status(200).json({ 'success': 'true', 'message': "Updated successfully" });
+            }
+        })
+    })
+}

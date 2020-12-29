@@ -92,6 +92,10 @@ export default function ShowList(props) {
         setTodoList(todoList.map(item => item._id == editedTodo ? {...item, title: title} : item))
         setTitle('')
         setHideDateField(false)
+        props.handleEditTodo(listId, editedTodo, title)
+        setTimeout(() => {
+            props.handleShowList()
+        }, 300);
     } else {
         console.log("Titile is empty")
     }

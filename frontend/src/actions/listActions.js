@@ -122,3 +122,25 @@ import store from '../store/index'
          })
      })
  }
+
+ export const handleEditTodo = (listId, todoId, title) => dispatch => {
+    var obj = {
+        "listId": listId,
+        "todoId": todoId,
+        "title": title
+    }
+    fetch(ROOT_URL + '/api/edittodo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+        mode: 'cors',
+        body: JSON.stringify(obj)
+    }).then(res=> {
+        res.json().then(data => {
+            if(data.success) {
+                console.log(data)
+            } else {
+                console.log(data)
+            }
+         })
+    })
+ }
