@@ -147,7 +147,7 @@ const handleUpdateList = response => {
                     </TableHead>
                     <TableBody>
                         {props.list.map((row) => (
-                            <TableRow key={row._id} className={[classes.changePointer, row._id == listId ? classes.slected : classes.notselect]} >
+                            <TableRow key={row._id} className={`classes.changePointer ${row._id == listId ? classes.slected : classes.notselect}`} >
                                 <TableCell align="left" onClick={()=>getTodo(row)} >{row.name}</TableCell>
                                 <TableCell align="right">
                                     <EditIcon onClick={()=>editList(row)} style={{color:'blue'}} />
