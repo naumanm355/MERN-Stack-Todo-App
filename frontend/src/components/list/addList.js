@@ -24,7 +24,7 @@ export default function AddList(props) {
             props.handleCreateList(value)
             setTimeout(() => {
                 props.handleShowList()
-            }, 300);
+            }, 600);
             // props.saveList(value);
             setValue('');
         }
