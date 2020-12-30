@@ -60,7 +60,7 @@ export default function ShowList(props) {
         props.handleDeleteList(id);
         setTimeout(() => {
             props.handleShowList()
-        }, 300);
+        }, 600);
         setTodoList([])
     }
 
@@ -82,7 +82,7 @@ const handleUpdateList = response => {
             setTitle('');
             setTimeout(() => {
                 props.handleShowList()
-            }, 300);
+            }, 900);
             console.log(props.list)
         } else {
             console.log("title is empty")
@@ -111,6 +111,9 @@ const handleUpdateList = response => {
         setTitle('')
         setHideDateField(false)
         props.handleEditTodo(listId, editedTodo, title)
+        setTimeout(() => {
+            props.handleShowList()
+        }, 500);
     } else {
         console.log("Titile is empty")
     }

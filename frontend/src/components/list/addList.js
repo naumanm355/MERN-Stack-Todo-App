@@ -24,7 +24,7 @@ export default function AddList(props) {
             props.handleCreateList(value)
             setTimeout(() => {
                 props.handleShowList()
-            }, 600);
+            }, 800);
             // props.saveList(value);
             setValue('');
         }
@@ -35,7 +35,7 @@ export default function AddList(props) {
             setTimeout(() => {
                 props.handleShowList()
                 setShow(false)
-            }, 300);
+            }, 400);
             setValue('')
         }
     }
@@ -60,7 +60,7 @@ export default function AddList(props) {
             </Button>
             </form>
             :
-            <form onSubmit={(event) => { event.preventDefault(); props.saveList(value) }}>
+            <form onSubmit={(event) => { event.preventDefault() }}>
                 <TextField
                     id="outlined-size-small"
                     placeholder="Enter name of list"
