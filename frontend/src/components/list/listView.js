@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
         handleShowList: ()=> { dispatch(handleShowList()) },
         handleUpdateList: (id,name) => {dispatch(handleUpdateList(id,name))},
         handleDeleteList: (id) => { dispatch(handleDeleteList(id)) },
-        handleCreateTodo: (listId, title, date) => { dispatch(handleCreateTodo(listId, title, date)) },
+        handleCreateTodo: (listId, title, date, cb) => { dispatch(handleCreateTodo(listId, title, date, cb)) },
         handleDeleteTodoFromList: (listId, todoId) => { dispatch(handleDeleteTodoFromList(listId, todoId)) },
         handleEditTodo: (listId, todoId, title) => { dispatch(handleEditTodo(listId, todoId, title)) },
         handleUpdateStatus: (listId, todoId, status) => { dispatch(handleUpdateStatus(listId, todoId, status)) }

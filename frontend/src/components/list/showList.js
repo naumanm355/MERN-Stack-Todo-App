@@ -62,13 +62,20 @@ export default function ShowList(props) {
         setTodoList([...row.todo])
     }
 
+const handleUpdateList = response => {
+    console.log("response", response.data.todo)
+    setTodoList(response.data.todo)
+}
+
     const addTodo = () => {
         if(title.trim() !== "") {
-            props.handleCreateTodo(listId, title, selectedDate);
+            let response = [];
+           props.handleCreateTodo(listId, title, selectedDate, handleUpdateList);
             setTitle('');
             setTimeout(() => {
                 props.handleShowList()
             }, 300);
+            console.log(props.list)
         } else {
             console.log("title is empty")
         }
@@ -132,8 +139,8 @@ export default function ShowList(props) {
                     </TableHead>
                     <TableBody>
                         {props.list.map((row) => (
-                            <TableRow key={row._id} className={classes.changePointer}>
-                                <TableCell align="left" onClick={()=>getTodo(row)}>{row.name}</TableCell>
+                            <TableRow key={row._id} className={classes.changePointer} style={{backgroundColor: row._id == listId ? 'grey' : 'white'}}>
+                                <TableCell align="left" onClick={()=>getTodo(row)} >{row.name}</TableCell>
                                 <TableCell align="right">
                                     <EditIcon onClick={()=>editList(row)} style={{color:'blue'}} />
                                 </TableCell>

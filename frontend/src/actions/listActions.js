@@ -80,13 +80,13 @@ import store from '../store/index'
      })
  }
 
- export const handleCreateTodo = (listId, title, date) => dispatch => {
+ export const handleCreateTodo = (listId, title, date, callBack) => dispatch => {
      var obj = {
         "title": title,
         "date": date,
         "listId": listId
      }
-     fetch(ROOT_URL + '/api/createtodo', {
+      fetch(ROOT_URL + '/api/createtodo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;charset=UTF-8' },
         mode: 'cors',
@@ -95,6 +95,7 @@ import store from '../store/index'
          res.json().then(data => {
             if(data.success) {
                 console.log(data)
+                callBack(data)
             } else {
                 console.log(data)
             }
