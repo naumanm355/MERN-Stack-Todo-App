@@ -12,6 +12,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import AddList from './addList';
 import { Button, Grid, TextField } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const useStyles = makeStyles({
     boldText: {
@@ -41,6 +42,7 @@ export default function ShowList(props) {
     const [title, setTitle] = useState('')
     const [hideDateField, setHideDateField] = useState(false);
     const [editedTodo, setEditiedTodo] = useState('')
+    const [loading, setLoading] = useState(false)
 
     useEffect(()=>{
         
@@ -57,9 +59,11 @@ export default function ShowList(props) {
     }
     const deleteList = (id) => {
         // console.log(id)
+        setLoading(true);
         props.handleDeleteList(id);
         setTimeout(() => {
             props.handleShowList()
+            setLoading(false)
         }, 600);
         setTodoList([])
     }
@@ -77,11 +81,12 @@ const handleUpdateList = response => {
 
     const addTodo = () => {
         if(title.trim() !== "") {
-            let response = [];
+            setLoading(true)
            props.handleCreateTodo(listId, title, selectedDate, handleUpdateList);
             setTitle('');
             setTimeout(() => {
                 props.handleShowList()
+                setLoading(false)
             }, 900);
             console.log(props.list)
         } else {
@@ -90,12 +95,14 @@ const handleUpdateList = response => {
     }
 
     const deleteTodo = (data) => {
+        setLoading(true)
         console.log(data)
         const afterFilter = todoList.filter(dd => dd._id !== data._id)
         setTodoList([...afterFilter])
         props.handleDeleteTodoFromList(listId, data._id);
         setTimeout(() => {
             props.handleShowList()
+            setLoading(false)
         }, 300);
     }
 
@@ -107,12 +114,14 @@ const handleUpdateList = response => {
 
     const updateTodo = () => {
         if(title.trim() !== "") {
+        setLoading(true);
         setTodoList(todoList.map(item => item._id == editedTodo ? {...item, title: title} : item))
         setTitle('')
         setHideDateField(false)
         props.handleEditTodo(listId, editedTodo, title)
         setTimeout(() => {
             props.handleShowList()
+            setLoading(false)
         }, 500);
     } else {
         console.log("Titile is empty")
@@ -130,13 +139,19 @@ const handleUpdateList = response => {
         setTodoList(todoList.map(item => item._id == data._id ? {...item, status: status} : item))
     }
 
+    const updateLoading = (loading) => {
+        setLoading(loading)
+    }
+
     return (
         <div className={classes.root}>
+            <LinearProgress style={{opacity: loading ? 1:  0 }} />
             <Grid container spacing={3} style={{ padding: '2%' }}>
                 <Grid item xs={5}>
                 <div>
                 <AddList handleCreateList = {props.handleCreateList} isUpdate={isUpdate} updatlist={updateList}
-                handleUpdateList={props.handleUpdateList} handleShowList={props.handleShowList}/>
+                handleUpdateList={props.handleUpdateList} handleShowList={props.handleShowList}
+                updateLoading={updateLoading}/>
             </div>
             <div>
             <TableContainer component={Paper}>

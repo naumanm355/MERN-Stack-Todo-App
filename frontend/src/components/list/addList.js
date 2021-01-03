@@ -21,9 +21,11 @@ export default function AddList(props) {
     const [show, setShow] = useState(false);
     const getValue = (value) => {
         if(value.trim() !== "") {
+            props.updateLoading(true)
             props.handleCreateList(value)
             setTimeout(() => {
                 props.handleShowList()
+                props.updateLoading(false)
             }, 800);
             // props.saveList(value);
             setValue('');
@@ -31,10 +33,12 @@ export default function AddList(props) {
     }
     const updateValue = () => {
         if(value.trim() !== "") {
+            props.updateLoading(true)
             props.handleUpdateList(props.updatlist.id,value)
             setTimeout(() => {
                 props.handleShowList()
                 setShow(false)
+                props.updateLoading(false)
             }, 400);
             setValue('')
         }
